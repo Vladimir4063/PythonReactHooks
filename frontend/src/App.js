@@ -1,6 +1,6 @@
 
 import React from 'react';
-import {BrowserRouter as Router, Switch, Route} from 'create-router-dom'
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import { About } from './components/About'; //Importamos el componente
 import { Users } from './components/Users';
 
