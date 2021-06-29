@@ -9,7 +9,7 @@ function App() {
   return ( //Instanciamos nuestra clase
     <Router>
       <Navbar/>
-      <div>
+      <div className="container p-4">
         <Switch>
           <Route path="/about" component= {About} />    
           <Route path="/" component= {Users} />
