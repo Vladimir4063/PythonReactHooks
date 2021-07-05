@@ -9,9 +9,9 @@ export const Users = () => {
     const [password, setPassword] = useState('')
 
     const handleSubmit = async (e) => {
-        //console.log(e) Al crear user, se actualiza 
+        //console.log(API) //Al crear user, se actualiza 
         e.preventDefault(); //quitamos el refresh
-        //console.log(name, email, password) Verificamos la entrada de datos
+        //console.log(name, email, password) //Verificamos la entrada de datos
         //CONEXION API - BACKEND
         const res = await fetch(`${API}/users`, { // await: permite estar asincrono.
             method: 'POST',
