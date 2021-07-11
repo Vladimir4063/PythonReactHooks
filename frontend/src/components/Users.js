@@ -8,6 +8,8 @@ export const Users = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
+    const [users, setUsers] = useState([])
+
     const handleSubmit = async (e) => {
         //console.log(API) //Al crear user, se actualiza 
         e.preventDefault(); //quitamos el refresh
@@ -32,11 +34,12 @@ export const Users = () => {
     const getUsers = async () => {
         const res = await fetch(`${API}/users`) //Por defecto, fetch usa el metodo GET
         const data = await res.json();
-        console.log(data);
+        //console.log(data);
+        setUsers(data)
     }
 
     //Funcion para llamar la funcion getUsers
-    useEffect(() => {
+    useEffect(() => { //useEffect Permite pintar los datos del backen en el front
         getUsers();
     }, [])
 
@@ -77,7 +80,26 @@ export const Users = () => {
                     </button>
                 </form>    
             </div>        
-            <div className = "col md-8">
+            <div className = "col-md-6"> 
+                <table className= "table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Password</th>
+                            <th>Operations</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {users.map(user => ( //Llevamos al front los datos
+                        <tr key={user._id}>
+                            <td>${user.name}</td>
+                            <td>${user.email}</td>
+                            <td>${user.password}</td>
+                        </tr>
+                    ))}
+                    </tbody>
+                </table>
             </div>
         </div>
     )   
