@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 
 const API = process.env.REACT_APP_API; //CONEXION BACKEND
 
@@ -15,7 +15,7 @@ export const Users = () => {
         //CONEXION API - BACKEND
         const res = await fetch(`${API}/users`, { // await: permite estar asincrono.
             method: 'POST',
-            headers: { //informacion general sobre los datos
+            headers: { //informacion adicional sobre los datos
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
@@ -27,6 +27,18 @@ export const Users = () => {
         const data = await res.json();
         console.log(data)
     }
+
+    //traemos datos del backend
+    const getUsers = async () => {
+        const res = await fetch(`${API}/users`) //Por defecto, fetch usa el metodo GET
+        const data = await res.json();
+        console.log(data);
+    }
+
+    //Funcion para llamar la funcion getUsers
+    useEffect(() => {
+        getUsers();
+    }, [])
 
     return (
         <div className = "row">
